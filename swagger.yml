@@ -1,0 +1,230 @@
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  /api/v1/car:
+    get:
+      summary: get all cars
+      tags:
+        - Car
+      security:
+        - api_key: []
+      parameters:
+        - name: query
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: got cars
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/carInfo'
+  /api/v1/car/{id}:
+    get:
+      summary: get car by id
+      tags:
+        - Car
+      security:
+        - api_key: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: got car details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/car'
+  /api/v1/car/book:
+    post:
+      summary: book a car
+      tags:
+        - Car
+      security:
+        - api_key: []
+      parameters:
+        - name: booking
+          in: query
+          schema:
+            $ref: '#/components/schemas/booking'
+          description: startDate has to be before endDate
+      responses:
+        '200':
+          description: got cars
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/car'
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+        '422':
+          description: invalid booking
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorObject'
+  /api/v1/user/registration:
+    post:
+        summary: register a user
+        tags:
+          - User
+        security:
+          - api_key: []
+        parameters:
+          - name: newUser
+            in: query
+            schema:
+              $ref: '#/components/schemas/user'
+            description: Mail needs to be unique
+        responses:
+          '200':
+            description: registered user
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/authenticationResponse'
+          '409':
+            description: registration invalid
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/errorObject'
+  /api/v1/user/login:
+    post:
+        summary: register a user
+        tags:
+          - User
+        security:
+          - api_key: []
+        parameters:
+          - name: newUser
+            in: query
+            schema:
+              $ref: '#/components/schemas/user'
+            description: Mail needs to be unique
+        responses:
+          '200':
+            description: registered user
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/authenticationResponse'
+          '409':
+            description: login invalid
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/errorObject'
+components:
+  schemas:
+    versionObject:
+      type: object
+      properties:
+        version:
+          type: string
+    errorObject:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: string
+    carInfo:
+      type: object
+      properties:
+        id:
+          type: string
+        brand:
+          type: string
+        name:
+          type: string
+        priceperday:
+          type: number
+          format: double
+    car:
+      type: object
+      properties:
+        id:
+          type: string
+        brand:
+          type: string
+        name:
+          type: string
+        horsepower:
+          type: integer
+        consumption:
+          type: number
+          format: double
+        priceperday:
+          type: number
+          format: double
+    booking:
+      type: object
+      properties:
+        carId:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+    user:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        birthday:
+          type: string
+          format: date
+    authenticationRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    authenticationResponse:
+      type: object
+      properties:
+        token:
+          type: string
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: Authorization
+      in: header
+servers:
+  - url: 'http://{localhost}'
+    variables:
+      localhost:
+        default: 'localhost:7001'
+  - url: 'https://{devhost}'
+    variables:
+      devhost:
+        default: server.live.example

@@ -1,0 +1,14 @@
+version: '3.5'
+services:
+  heisl-frontend:
+    container_name: heisl-frontend-test
+    build:
+      context: .
+      target: build
+    volumes:
+      - ./coverage/:/coverage
+    entrypoint:
+      - /bin/sh
+      - -c
+    command:
+      - npm run test -- --no-watch --no-progress --browsers=ChromiumHeadlessCI --code-coverage; find /coverage -type d -exec chmod 0777 {} +; find /coverage -type f -exec chmod 0666 {} +
