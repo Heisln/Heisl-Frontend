@@ -1,0 +1,17 @@
+.invalidInput {
+    border: solid 1px red;
+}
+
+ion-input {
+    text-align: right;
+}
+
+.form-text {
+    max-width: 300px;  
+} 
+
+@media only screen and (min-width: 1050px) {
+    .form-text {
+        max-width: 600px;  
+    } 
+}

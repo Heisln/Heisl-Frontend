@@ -1,0 +1,8 @@
+<ion-item>
+  <ion-label class="ion-text-wrap">
+    <h2>{{labelIn}}</h2>
+    <app-form-error-list [validationErrors]="formControlIn.errors" [didSubmitIn]="didSubmitIn"></app-form-error-list>
+  </ion-label>
+  <ion-datetime [formControl]="formControlIn" [class.invalidInput]="didSubmitIn && formControlIn.errors != null" 
+    displayFormat="YYYY-MM-DD" min="{{ minYear }}" max="{{ maxYear }}" slot="end"></ion-datetime>
+</ion-item>

@@ -1,0 +1,30 @@
+<!-- slideAble Version -->
+
+<ion-item-sliding *ngIf="slideToRemove">
+
+  <ion-item>
+    <ion-label class="ion-text-wrap">
+      <h2>{{labelIn}}</h2>
+      <app-form-error-list [validationErrors]="formControlIn.errors" [didSubmitIn]="didSubmitIn"></app-form-error-list>
+    </ion-label>
+    <ion-select i18n-placeholder [formControl]="formControlIn" [class.invalidInput]="didSubmitIn && formControlIn.errors != null" interface="popover" slot="end" >
+      <ion-select-option *ngFor="let val of values(enumIn)" value="{{ val }}">{{ val }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item-options side="end">
+    <ion-item-option (click)="remove()">Remove</ion-item-option>
+  </ion-item-options>
+</ion-item-sliding>
+
+<!-- non slideAble Version -->
+
+<ion-item *ngIf="!slideToRemove">
+  <ion-label class="ion-text-wrap">
+    <h2>{{labelIn}}</h2>
+    <app-form-error-list [validationErrors]="formControlIn.errors" [didSubmitIn]="didSubmitIn"></app-form-error-list>
+  </ion-label>
+  <ion-select i18n-placeholder [formControl]="formControlIn" [class.invalidInput]="didSubmitIn && formControlIn.errors != null" interface="popover" slot="end" >
+    <ion-select-option *ngFor="let val of values(enumIn)" value="{{ val }}">{{ val }}</ion-select-option>
+  </ion-select>
+</ion-item>

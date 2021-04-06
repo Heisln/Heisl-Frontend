@@ -1,0 +1,11 @@
+<ul class="errorList" *ngIf="didSubmitIn && validationErrors != null">
+  <li class="error" *ngIf="didSubmitIn && validationErrors?.required != null">
+    Required field.
+  </li>
+  <li class="error" *ngIf="didSubmitIn && validationErrors?.max != null">
+    Maximum value: {{validationErrors.max.max}}.
+  </li>
+  <li class="error" *ngIf="didSubmitIn && validationErrors?.min != null">
+    Minimum value: {{validationErrors.min.min}}.
+  </li>
+</ul>

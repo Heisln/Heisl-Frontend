@@ -1,0 +1,122 @@
+
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*", "*zone-flags.ts", "node_modules/**", "openapi/**"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": ["tsconfig.json", "e2e/tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "plugins": ["unused-imports"],
+      "env": {
+        "browser": true
+      },
+      "extends": [
+        // Turn on recommended rules
+        "eslint:recommended",
+        // Enforce general google style guide
+        "google",
+        // Enforces typescript specific rules
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        // Enforces angular conventions
+        "plugin:@angular-eslint/ng-cli-compat",
+        "plugin:@angular-eslint/ng-cli-compat--formatting-add-on"
+      ],
+      "rules": {
+        // NEW RULES
+        "no-shadow": ["off"], // Default no-shadow in eslint is broken for TS
+        "@typescript-eslint/no-shadow": ["error"],
+        "no-unused-vars": "off",
+        // Unused vars and imports advanced search in typescript
+        "@typescript-eslint/no-unused-vars": "off",
+        "unused-imports/no-unused-vars-ts": [
+          "warn",
+          {"vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_"}
+        ],
+        "unused-imports/no-unused-imports-ts": "warn",
+        // Define the allowed suffixes for components
+        "@angular-eslint/component-class-suffix": [
+          "error", {
+            "suffixes": ["Page", "Component"]
+          }
+        ],
+        // Newline and spacing policies
+        "object-curly-newline": ["error", {"consistent": true}],
+        "object-curly-spacing": ["error", "always"],
+        "array-element-newline": ["error", "consistent"],
+        "new-cap": ["error", {"capIsNew": false}],  // Allows Angular constructs like @Injectable
+        "indent": ["error", 2],  // Google has different values based on cases
+
+        // DEACTIVATION OF RULES
+        "camelcase": ["off"],  // Already checked by a @typescript-eslint rule
+        "no-underscore-dangle": ["off"],  // Some Angular vars are underscore-prefixed
+        "require-jsdoc": ["off"],  // Google rule
+        "valid-jsdoc": ["off"],  // Enforced by Google
+        "@typescript-eslint/explicit-module-boundary-types": ["off"],
+        "padded-blocks": ["off"]
+      }
+    },
+    {
+      // These are also .ts, so the above config applies
+      "files": ["*spec.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.json", "e2e/tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "plugins": ["jasmine"],
+      "env": {
+        
+      },
+      "extends": [
+        // Adds jasmine-specific rules
+        "plugin:jasmine/recommended"
+      ],
+      "rules": {
+        // The testing environment wants some floating promises by default
+        "@typescript-eslint/no-floating-promises": ["off"],
+        // Constructing backend-generated objects in the store for testing implies often using non-standard names
+        "@typescript-eslint/naming-convention": ["off"],
+        // some async tests do not require us to use an await clause
+        "@typescript-eslint/require-await": ["off"],
+        // Some unbound methods need to be called
+        "@typescript-eslint/unbound-method": ["off"],
+        // The whole jasmine framework has any types everywhere
+        "@typescript-eslint/no-unsafe-call": ["off"],
+        "@typescript-eslint/no-unsafe-member-access": ["off"],
+        "@typescript-eslint/no-unsafe-assignment": ["off"],
+        // we still prefer the explicit call instead of the shorthand
+        "@typescript-eslint/object-shorthand": ["off"]
+      }
+    },
+      {
+      "files": ["*.reducer.ts", "app.module.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.json", "e2e/tsconfig.json"]
+      },
+      "rules": {
+        // Allow documented constructor-like syntax for these files
+        "prefer-arrow/prefer-arrow-functions": ["off"]
+      }
+    },
+    {
+      "files": ["*.testdata.ts"],
+      "rules": {
+        // Allow documented constructor-like syntax for these files
+        "@typescript-eslint/naming-convention": ["off"]
+      }
+    },
+    {
+      "files": ["*.html"],
+      "parser": "@angular-eslint/template-parser",
+      "extends": [
+        // Runs eslint on HTML files
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {}
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+<ion-item>
+  <ion-label class="ion-text-wrap">
+    <h2>{{labelIn}}</h2>
+    <app-form-error-list [validationErrors]="formControlIn.errors" [didSubmitIn]="didSubmitIn"></app-form-error-list>
+  </ion-label>
+  <ion-checkbox [formControl]="formControlIn" [class.invalidInput]="didSubmitIn && formControlIn.errors != null" slot="end"></ion-checkbox>
+</ion-item>

@@ -1,0 +1,81 @@
+// Modal View
+@media only screen and (min-width: 768px) and (min-height: 600px) {
+  .big-modal-wrapper {
+    .modal-wrapper {
+        width: auto !important;
+        position: absolute;
+        height: auto !important;
+        top: 40px;
+        bottom: 40px;
+        right: 40px;
+        left: 40px;
+    }
+  }
+
+  ion-modal.upload-modal-wrapper {
+    --max-width: 600px;
+    --max-height: 650px;
+    --height: 80%;
+    --width: 80%;
+  }
+
+  ion-modal.small-modal-class {
+    --max-width: 600px;
+    --max-height: 500px;
+    --height: 80%;
+    --width: 80%;
+  }
+
+  .ios .modal-wrapper {
+      border-radius: 0;
+  }
+}
+
+.big-modal-wrapper {
+  .modal-wrapper {
+
+      ion-grid {
+        padding: 20px;
+      }
+      
+      ion-list {
+        --background: var(--ion-color-pages-bg-color);
+      }
+      
+      ion-item {
+          --background: var(--ion-color-pages-bg-color);
+      }
+  }
+}
+.right-header-sm {
+  display: none;
+}
+  
+.left-header {
+  padding-bottom: 12px;
+  display: flex;
+  align-content: space-between;
+
+  h1 {
+    margin: 0 0 0 0;
+    color: var(--ion-color-pages-color);
+    font-size: 42px;
+    font-weight: 600;
+    letter-spacing: 0.25px;
+    line-height: 50px;
+  }
+
+  .save-cancel-button { 
+    margin-left: auto;
+  }
+}
+
+@media only screen and (max-width: 729px) {
+  .right-header {
+    display: none;
+  }
+
+  .right-header-sm {
+    display: block;
+  }
+}

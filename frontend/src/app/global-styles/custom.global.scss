@@ -1,0 +1,29 @@
+$content-width: 620px;
+
+.content-box {
+  max-width: $content-width;
+  margin: 30px auto 0 auto;
+}
+
+.sub-menu {
+  margin-left: 15px;
+
+  ion-list-header {
+    padding: 50px 0;
+    padding-left: 20px;
+  }
+
+  ion-item {
+    --inner-border-width: 0;
+    border-left: 1px solid transparent;
+
+    &.highlighted-row {
+      border-left: 1px solid #e53527;
+    }
+  }
+
+  .ion-list-footer {
+    padding-top: 50px;
+    padding-left: 20px;
+  }
+}
