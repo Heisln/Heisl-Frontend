@@ -1,17 +1,14 @@
 import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import * as fromAuth from './redux-auth/auth.reducer';
-import * as fromError from './redux-error-handling/error.reducer';
 
 export interface State {
   auth: fromAuth.State;
-  error: fromError.State;
 }
 
 export const metaReducers: MetaReducer<any>[] = [debug, localStorageSyncReducer];
 export const appReducers: ActionReducerMap<State> = {
   auth: fromAuth.reducer,
-  error: fromError.reducer,
 };
 
 // Meta reducers, called before actual reducers

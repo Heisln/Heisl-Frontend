@@ -21,8 +21,8 @@ export class AppComponent implements OnInit {
   public user$: Observable<UserVM>;
   public appPages = [
     {
-      title: 'Items',
-      url: '/' + AppSubRoutes.items,
+      title: 'Cars',
+      url: '/' + AppSubRoutes.cars,
       icon: 'home',
     }
   ];
