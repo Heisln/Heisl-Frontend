@@ -1,4 +1,4 @@
-# heisl-frontend
+# Heisl-Frontend
 
 ## Getting Started
 To develop locally setup the [nap-backend](https://gitlab.com/nap-solution/nap-backend). The Frontend pulls its data from this API.  
