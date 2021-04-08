@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master, develop ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run linter compose
+        run: docker-compose -f docker-compose.lint.yml up  --build --exit-code-from heisl-frontend-lint
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run linter compose
+        run: docker-compose -f docker-compose.test.yml up  --build --exit-code-from heisl-frontend-test
