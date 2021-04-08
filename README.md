@@ -1,3 +1,4 @@
+![test badge](https://github.com/Heisln/Heisln-Frontend/actions/workflows/main.yml/badge.svg)
 # Heisl-Frontend
 
 ## Getting Started
