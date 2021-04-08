@@ -19,17 +19,20 @@ export class CarsPage implements OnInit {
 
   ngOnInit() {
     this.cars$ = this.store.select(fromItems.selectAllCars, { sortAttr: 'name' });
-    this.makeItemQueryRequest();
+  }
+
+  ionViewWillEnter() {
+    this.makeCarRequest();
   }
 
   searchBarDidChange(event: any) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     const query = event.detail.value as string;
     this.store.dispatch(ItemActions.setQuery({ query }));
-    this.makeItemQueryRequest();
+    this.makeCarRequest();
   }
 
-  makeItemQueryRequest() {
+  makeCarRequest() {
     this.store.dispatch(ItemActions.loadAllCars());
   }
 }

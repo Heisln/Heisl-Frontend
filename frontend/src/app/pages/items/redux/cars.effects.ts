@@ -13,7 +13,15 @@ export class CarEffects {
     this.actions$.pipe(
       ofType(ItemActions.loadAllCars),
       withLatestFrom(this.store.select(fromItems.selectQuery)),
+      map(lel => {
+        console.log('yolo');
+        return lel;
+      }),
       switchMap(([_type, _query]) => this.carSerice.apiV1CarGet().pipe(
+        map(cars => {
+          console.log(cars);
+          return cars;
+        }),
         map(cars => ItemActions.setCars({ cars })),
         catchError(() => EMPTY)
       ))

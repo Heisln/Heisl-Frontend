@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -12,6 +12,7 @@ import { BASE_PATH } from '../../openapi/variables';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpErrorInterceptor } from './interceptors/http-error-interceptor';
 import { ReduxModule } from './redux/core.module';
 import { TokenAdapterService } from './services/token-adapter.service';
 
@@ -50,6 +51,7 @@ export function openapiConfigFactory(tokAdapter: TokenAdapterService): Configura
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: BASE_PATH, useValue: environment.apiBasePath },
     { provide: Configuration, useFactory: openapiConfigFactory, deps: [TokenAdapterService], multi: false },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

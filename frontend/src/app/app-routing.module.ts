@@ -11,11 +11,11 @@ export const routingConfiguration: ExtraOptions = {
 const routes: Routes = [
   {
     path: '',
-    redirectTo: AppSubRoutes.items,
+    redirectTo: AppSubRoutes.cars,
     pathMatch: 'full',
   },
   {
-    path: AppSubRoutes.items,
+    path: AppSubRoutes.cars,
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/items/cars.module').then((m) => m.CarPageModule),
   },

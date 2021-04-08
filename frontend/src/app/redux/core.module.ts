@@ -5,13 +5,12 @@ import { StoreModule } from '@ngrx/store';
 import { CoreEffects } from './core.effects';
 import { appReducers, metaReducers } from './core.reducer';
 import { AuthEffects } from './redux-auth/auth.effects';
-import { ErrorEffects } from './redux-error-handling/error.effects';
 
 @NgModule({
   imports: [
     CommonModule,
     StoreModule.forRoot(appReducers, { metaReducers }),
-    EffectsModule.forRoot([CoreEffects, ErrorEffects, AuthEffects]),
+    EffectsModule.forRoot([CoreEffects, AuthEffects]),
   ],
   declarations: [],
 })
