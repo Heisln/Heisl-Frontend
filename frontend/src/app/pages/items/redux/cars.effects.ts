@@ -15,6 +15,7 @@ export class CarEffects {
       ofType(ItemActions.loadAllCars),
       withLatestFrom(this.store.select(fromItems.selectQuery)),
       switchMap(([_type, query]) => this.carApiSerice.carGet(query).pipe(
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         map(cars => ItemActions.setCars({ cars })),
         catchError(() => EMPTY)
       ))
