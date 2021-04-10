@@ -2,7 +2,7 @@
 # Heisl-Frontend
 
 ## Getting Started
-To develop locally setup the [nap-backend](https://gitlab.com/nap-solution/nap-backend). The Frontend pulls its data from this API.  
+To develop locally setup the [Heisln-Api](https://github.com/Heisln/Heisln-Api). The Frontend pulls its data from this API.  
 You may use the `ionic serve` launch config in VSCode to have a auto recompiling version running while developing.
 
 ## Run Container
