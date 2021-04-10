@@ -28,6 +28,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/bookings/bookings.module').then( m => m.BookingsPageModule)
   },
+  {
+    path: AppSubRoutes.googleMaps,
+    loadChildren: () => import('./pages/google-map/google-map.module').then( m => m.GoogleMapPageModule)
+  },
 ];
 
 @NgModule({
