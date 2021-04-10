@@ -3,7 +3,7 @@ import { localStorageSync } from 'ngrx-store-localstorage';
 import * as fromAuth from './redux-auth/auth.reducer';
 
 export interface State {
-  auth: fromAuth.State;
+  [fromAuth.context]: fromAuth.State;
 }
 
 export const metaReducers: MetaReducer<any>[] = [debug, localStorageSyncReducer];

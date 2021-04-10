@@ -6,14 +6,13 @@ export class AuthEffects {
   // login$ = createEffect(() =>
   //   this.actions$.pipe(
   //     ofType(AuthActions.login.type),
-  //     mergeMap((authReq: AuthenticationRequest) =>
-  //       this.authService.apiV1LoginPost(authReq).pipe(
-  //         map((resp) => AuthActions.loginSuccess({authRes: resp})),
-  //         catchError((_err) => {
-  //           const errorTest: CustomError = {code: 12, message: 'test'}; //TODO: change me
-  //           const action = AuthActions.loginFailure({error: errorTest});
-  //           return of(action);
-  //         })
+  //     switchMap(({ authReq }) =>
+  //       this.authService.apiV1IdentityLoginPost(authReq).pipe(
+  //         switchMap((resp) => of(
+  //           AuthActions.setUser({ tokenInfo: tokenInfoAPItoVS(resp.token) }),
+  //           CoreActions.redirectLastRequestedRoute())
+  //         ),
+  //         catchError(() => of(AuthActions.clearUser()))
   //       )
   //     )
   //   )
@@ -21,12 +20,12 @@ export class AuthEffects {
 
   // logout$ = createEffect(() =>
   //   this.actions$.pipe(
-  //     ofType(AuthActions.logout.type),
-  //     map(() => AuthActions.logoutConfirmed())
+  //     ofType(AuthActions.logout),
+  //     mergeMap(() => of(AuthActions.clearUser(), CoreActions.redirectLogin()))
   //   )
   // );
 
   constructor(
-    private actions$: Actions
-  ) {}
+    private actions$: Actions,
+  ) { }
 }

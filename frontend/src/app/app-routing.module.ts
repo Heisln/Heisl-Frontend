@@ -25,6 +25,7 @@ const routes: Routes = [
   },
   {
     path: AppSubRoutes.bookings,
+    canActivate: [AuthGuard],
     loadChildren: () => import('./pages/bookings/bookings.module').then( m => m.BookingsPageModule)
   },
 ];

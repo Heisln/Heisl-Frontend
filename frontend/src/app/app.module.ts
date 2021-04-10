@@ -1,5 +1,5 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -14,24 +14,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpErrorInterceptor } from './interceptors/http-error-interceptor';
 import { ReduxModule } from './redux/core.module';
-import { TokenAdapterService } from './services/token-adapter.service';
+import { AppConfigService } from './services/token-adapter.service';
 
-// eslint-disable-next-line unused-imports/no-unused-vars-ts
-export function openapiConfigFactory(tokAdapter: TokenAdapterService): Configuration {
-  const cfg = new Configuration({
-    credentials: {
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      api_key: () => {
-        const tok = '';// tokAdapter.getToken();
-        if (tok == null) {
-          return undefined;
-        }
-        return 'Bearer ' + tok;
-      },
-    },
-    withCredentials: true,
-  });
-  return cfg;
+export function appInitializerFn(_appConfig: AppConfigService) {
+  // Do any further init
+  // rn the init we need is in the init of AppConfigService!
 }
 
 @NgModule({
@@ -44,14 +31,15 @@ export function openapiConfigFactory(tokAdapter: TokenAdapterService): Configura
     ReduxModule.forRoot(),
     ApiModule, // TODO: should we move this to RxCoreModule to enforce proper use of effect rather than direct API calls?
     HttpClientModule, // TODO: same as above
-    StoreDevtoolsModule.instrument({ name: 'nap', maxAge: 25, logOnly: environment.production }),
+    StoreDevtoolsModule.instrument({ name: 'heisln', maxAge: 25, logOnly: environment.production }),
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: BASE_PATH, useValue: environment.apiBasePath },
-    { provide: Configuration, useFactory: openapiConfigFactory, deps: [TokenAdapterService], multi: false },
+    { provide: Configuration, useFactory: () => new Configuration(), multi: false },
+    { provide: APP_INITIALIZER, useFactory: () => appInitializerFn, deps: [AppConfigService], multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],

@@ -29,6 +29,11 @@ export class AppComponent implements OnInit {
       title: 'Bookings',
       url: '/' + AppSubRoutes.bookings,
       icon: 'book',
+    },
+    {
+      title: 'Login',
+      url: '/' + AppSubRoutes.login,
+      icon: 'log-in',
     }
   ];
 
@@ -40,7 +45,6 @@ export class AppComponent implements OnInit {
     private readonly store: Store
   ) {
     this.initializeApp();
-    // this.user$ = this.store.select(selectToken).pipe(map((token) => new UserVM(token)));
   }
 
   initializeApp(): void {
