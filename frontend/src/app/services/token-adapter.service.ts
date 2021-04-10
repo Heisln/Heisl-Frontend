@@ -20,7 +20,6 @@ export class AppConfigService {
   setupTokenSubscription() {
     this.currentToken = null;
     // Openapi setup
-    this.openAPIConfig.basePath = 'placeholder'; // This allows us to debug efficiently, as default is valid in openapi
     this.openAPIConfig.withCredentials = true;
     this.openAPIConfig.credentials = {
       api_key: undefined
