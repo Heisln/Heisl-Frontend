@@ -1,4 +1,5 @@
 export enum AppSubRoutes {
     cars = 'cars',
-    login = 'login'
+    login = 'login',
+    bookings ='bookings',
 }

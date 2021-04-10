@@ -20,8 +20,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/items/cars.module').then((m) => m.CarPageModule),
   },
   {
-    path: 'login',
+    path: AppSubRoutes.login,
     loadChildren: () => import('./pages/login/login.module').then((m) => m.LoginPageModule),
+  },
+  {
+    path: AppSubRoutes.bookings,
+    loadChildren: () => import('./pages/bookings/bookings.module').then( m => m.BookingsPageModule)
   },
 ];
 

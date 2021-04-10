@@ -23,7 +23,12 @@ export class AppComponent implements OnInit {
     {
       title: 'Cars',
       url: '/' + AppSubRoutes.cars,
-      icon: 'home',
+      icon: 'car-sport',
+    },
+    {
+      title: 'Bookings',
+      url: '/' + AppSubRoutes.bookings,
+      icon: 'book',
     }
   ];
 

@@ -16,6 +16,7 @@ import { HttpErrorInterceptor } from './interceptors/http-error-interceptor';
 import { ReduxModule } from './redux/core.module';
 import { TokenAdapterService } from './services/token-adapter.service';
 
+// eslint-disable-next-line unused-imports/no-unused-vars-ts
 export function openapiConfigFactory(tokAdapter: TokenAdapterService): Configuration {
   const cfg = new Configuration({
     credentials: {

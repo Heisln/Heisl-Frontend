@@ -31,4 +31,4 @@ echo Stopping $PROJECT_NAME
 cd "$SCRIPT_DIR/.."
 docker-compose -f docker-compose.dev.yml down
 
-docker network rm nap-net || true
+docker network rm heisl-net || true
