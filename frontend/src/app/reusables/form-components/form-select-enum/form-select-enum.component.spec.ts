@@ -1,4 +1,4 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { ComponentTester } from 'src/app/testing/component-tester.class.spec';
 import { FormSelectEnumComponent } from './form-select-enum.component';
@@ -7,7 +7,7 @@ describe('FormSelectEnumComponent', () => {
   let tester: ComponentTester<FormSelectEnumComponent>;
   let mockStore: MockStore<any>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       providers: [
         FormSelectEnumComponent,

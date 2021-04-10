@@ -7,7 +7,7 @@ describe('AuthGuard', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterModule.forRoot([])],
+      imports: [RouterModule.forRoot([], { relativeLinkResolution: 'legacy' })],
     });
     _guard = TestBed.inject(AuthGuard);
   });

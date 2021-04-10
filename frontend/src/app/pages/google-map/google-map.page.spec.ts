@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { GoogleMapPage } from './google-map.page';
@@ -7,7 +7,7 @@ describe('GoogleMapPage', () => {
   let component: GoogleMapPage;
   let fixture: ComponentFixture<GoogleMapPage>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ GoogleMapPage ],
       imports: [IonicModule.forRoot()]

@@ -1,4 +1,4 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { ComponentTester } from 'src/app/testing/component-tester.class.spec';
 
@@ -8,7 +8,7 @@ describe('FormToggleComponent', () => {
   let tester: ComponentTester<FormToggleComponent>;
   let mockStore: MockStore<any>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       providers: [
         FormToggleComponent,

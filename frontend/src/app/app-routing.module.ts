@@ -6,6 +6,7 @@ import { AuthGuard } from './guards/auth.guard';
 export const routingConfiguration: ExtraOptions = {
   paramsInheritanceStrategy: 'always',
   preloadingStrategy: PreloadAllModules,
+  relativeLinkResolution: 'legacy'
 };
 
 const routes: Routes = [

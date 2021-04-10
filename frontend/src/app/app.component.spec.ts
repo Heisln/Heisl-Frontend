@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -13,7 +13,7 @@ describe('AppComponent', () => {
   let platformReadySpy: jasmine.SpyObj<Promise<void>>;
   let platformSpy: jasmine.SpyObj<Platform>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']) as jasmine.SpyObj<StatusBar>;
     splashScreenSpy = jasmine.createSpyObj('SplashScreen', ['hide']) as jasmine.SpyObj<SplashScreen>;
     platformReadySpy = Promise.resolve() as jasmine.SpyObj<Promise<void>>;
