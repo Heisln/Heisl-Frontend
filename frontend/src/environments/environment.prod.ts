@@ -3,5 +3,5 @@ export const environment: CustomEnv = {
   production: true,
   version: '%VERSION%',
   loginUrl: '/login',
-  apiBasePath: 'https://...', // TODO: add url for live version
+  apiBasePath: 'heisln-api', // TODO: add url for live version
 };

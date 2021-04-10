@@ -1,7 +1,8 @@
 version: '3.5'
 services:
   heisl-frontend:
-    container_name: heisl-frontend-dev
+    container_name: heisl-frontend
+    image: heisl-frontend
     build:
       context: .
       target: build
@@ -11,7 +12,7 @@ services:
       - ${PWD}/frontend/:/app/
       - /app/node_modules/
     networks:
-      - heisl-net
+      - heisln-net
     entrypoint:
       - /bin/sh
       - -c
@@ -19,5 +20,5 @@ services:
       - ionic serve --host 0.0.0.0 -b
 
 networks:
-  heisl-net:
+  heisln-net:
     external: true
