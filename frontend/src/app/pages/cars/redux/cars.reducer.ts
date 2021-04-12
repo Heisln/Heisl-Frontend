@@ -5,7 +5,7 @@ import { compareObjectsByAttribute } from 'src/app/utils/util-methods';
 import * as fromRoot from '../../../redux/core.reducer';
 import * as CarsActions from './cars.actions';
 
-export const context = 'items';
+export const context = 'car';
 
 export interface CarsState extends EntityState<Car> {
   query: string | null;

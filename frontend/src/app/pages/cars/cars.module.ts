@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { CarBookModalPageModule } from './car-book-modal/car-book-modal.module';
 import { CarComponent } from './car-component/car.component';
 import { ItemsPageRoutingModule } from './cars-routing.module';
 import { CarsPage } from './cars.page';
@@ -18,6 +19,7 @@ import * as fromCars from './redux/cars.reducer';
     ItemsPageRoutingModule,
     StoreModule.forFeature(fromCars.context, fromCars.reducer),
     EffectsModule.forFeature([CarEffects]),
+    CarBookModalPageModule,
   ],
   declarations: [CarsPage, CarComponent],
 })
