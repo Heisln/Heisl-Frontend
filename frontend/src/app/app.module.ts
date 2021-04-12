@@ -14,7 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpErrorInterceptor } from './interceptors/http-error-interceptor';
 import { ReduxModule } from './redux/core.module';
-import { AppConfigService } from './services/token-adapter.service';
+import { AppConfigService } from './services/app-config.service';
 
 export function appInitializerFn(_appConfig: AppConfigService) {
   // Do any further init

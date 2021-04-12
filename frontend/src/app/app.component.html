@@ -25,14 +25,11 @@
 
         <ion-list>
           <ion-item lines="none" detail="false">
-            <ion-label>User email: {{ (user$ | async)?.email }}</ion-label>
+            <ion-label>User ID: {{ (user$ | async) }}</ion-label>
           </ion-item>
-          <ion-item lines="none" detail="false">
-            <ion-label>User role: {{ (user$ | async)?.role }}</ion-label>
-          </ion-item>
-          <ion-item lines="none" detail="false">
+          <!-- <ion-item lines="none" detail="false">
             <ion-button [hidden]="(user$ | async)?.token == null" (click)="logout()" color="danger">Log out</ion-button>
-          </ion-item>
+          </ion-item> -->
         </ion-list>
       </ion-content>
     </ion-menu>

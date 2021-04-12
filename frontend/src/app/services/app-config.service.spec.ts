@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { TokenAdapterService } from './token-adapter.service';
+import { AppConfigService } from './app-config.service';
 
 describe('TokenAdapterService', () => {
-  let _service: TokenAdapterService;
+  let _service: AppConfigService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    _service = TestBed.inject(TokenAdapterService);
+    _service = TestBed.inject(AppConfigService);
   });
 
   // it('should be created', () => {

@@ -7,8 +7,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { environment } from './../environments/environment';
 import { AppSubRoutes } from './app.subroutes';
-import { UserVM } from './models/user.view-model';
 import * as AuthActions from './redux/redux-auth/auth.actions';
+import * as fromAuth from './redux/redux-auth/auth.reducer';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +18,7 @@ import * as AuthActions from './redux/redux-auth/auth.actions';
 export class AppComponent implements OnInit {
   public selectedIndex = 1;
   public version = environment.version;
-  public user$: Observable<UserVM>;
+  public user$: Observable<string>;
   public appPages = [
     {
       title: 'Cars',
@@ -67,6 +67,8 @@ export class AppComponent implements OnInit {
         );
       }
     });
+
+    this.user$ = this.store.select(fromAuth.selectCurrentUserId);
   }
 
   navigateExternal(url: string): boolean {
