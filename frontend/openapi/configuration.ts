@@ -58,10 +58,10 @@ export class Configuration {
             this.credentials = {};
         }
 
-        // init default api_key credential
-        if (!this.credentials['api_key']) {
-            this.credentials['api_key'] = () => {
-                return this.apiKeys['api_key'] || this.apiKeys['Authorization'];
+        // init default Bearer credential
+        if (!this.credentials['Bearer']) {
+            this.credentials['Bearer'] = () => {
+                return this.apiKeys['Bearer'] || this.apiKeys['Authorization'];
             };
         }
     }

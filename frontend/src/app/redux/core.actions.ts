@@ -1,3 +1,3 @@
 import { createAction } from '@ngrx/store';
 
-export const noopAction = createAction('[core] noop');
+export const redirectLogin = createAction('[core] redirectLogin');
