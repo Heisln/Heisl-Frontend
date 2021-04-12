@@ -18,7 +18,7 @@ const routes: Routes = [
   {
     path: AppSubRoutes.cars,
     canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/items/cars.module').then((m) => m.CarPageModule),
+    loadChildren: () => import('./pages/cars/cars.module').then((m) => m.CarPageModule),
   },
   {
     path: AppSubRoutes.login,

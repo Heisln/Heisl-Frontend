@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { UserService } from 'openapi';
 import { EMPTY, of } from 'rxjs';
-import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
+import { catchError, mergeMap, switchMap } from 'rxjs/operators';
 import * as AuthActions from './auth.actions';
 import * as CoreActions from '../core.actions';
 
@@ -12,7 +12,10 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(AuthActions.login),
       switchMap(({ authReq }) => this.userSerivce.apiV1UserLoginPost(authReq).pipe(
-        map(authResp => AuthActions.setAuthResponse({ authResp })),
+        switchMap(authResp => [
+          AuthActions.setAuthResponse({ authResp }),
+          CoreActions.redirectCars(),
+        ]),
         catchError(() => EMPTY))
       )
     )

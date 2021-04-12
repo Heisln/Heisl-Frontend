@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IonicModule } from '@ionic/angular';
-import { mockCar1 } from '../items.testdata.spec';
+import { mockCar1 } from '../cars.testdata.spec';
 import { CarComponent } from './car.component';
 
 describe('ItemComponent', () => {

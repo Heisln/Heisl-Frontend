@@ -9,9 +9,9 @@ export interface State {
   authResp: AuthenticationResponse | null;
 }
 
-export const selectAuth = createFeatureSelector<fromRoot.State, State>(context);
-export const selectUser = createSelector(selectAuth, (state: State) => state.authResp);
-export const selectToken = createSelector(selectAuth, (state: State) => state.authResp.token);
+const selectAuth = createFeatureSelector<fromRoot.State, State>(context);
+export const selectCurrentUserId = createSelector(selectAuth, (state: State) => state.authResp?.userId);
+export const selectToken = createSelector(selectAuth, (state: State) => state.authResp?.token);
 
 const initialState: State = {
   authResp: null,

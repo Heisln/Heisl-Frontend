@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: CarsPage,
+  },
+  {
+    path: 'car-book-modal',
+    loadChildren: () => import('./car-book-modal/car-book-modal.module').then( m => m.CarBookModalPageModule)
   }
 ];
 

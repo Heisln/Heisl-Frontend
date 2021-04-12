@@ -4,9 +4,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { IonicModule } from '@ionic/angular';
 import { provideMockStore } from '@ngrx/store/testing';
 import { CarsPage } from './cars.page';
-import { itemTestState } from './items.testdata.spec';
+import { itemTestState } from './cars.testdata.spec';
 
-describe('ItemsPage', () => {
+describe('CarsPage', () => {
   let component: CarsPage;
   let fixture: ComponentFixture<CarsPage>;
 

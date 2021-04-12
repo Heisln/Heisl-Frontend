@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="primary" (click)="dismiss()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Book {{ car.brand }} {{ car.name }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" (click)="bookCar()">Book</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="bookingFormGroup">
+
+    <ion-list>
+      <app-form-date labelIn="Start Date" [didSubmitIn]="didSubmitOnce" [formControlIn]="bookingFormGroup.controls.startDate"></app-form-date>
+      <app-form-date labelIn="End Date" [didSubmitIn]="didSubmitOnce" [formControlIn]="bookingFormGroup.controls.endDate"></app-form-date>
+    </ion-list>
+  </form>
+</ion-content>

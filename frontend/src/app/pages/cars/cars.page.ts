@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
-import { Car } from 'openapi';
+import { CarInfo } from 'openapi';
 import { Observable } from 'rxjs';
+import { CarBookModalPage } from './car-book-modal/car-book-modal.page';
 import * as ItemActions from './redux/cars.actions';
 import * as fromItems from './redux/cars.reducer';
 
@@ -11,10 +13,11 @@ import * as fromItems from './redux/cars.reducer';
   styleUrls: ['./cars.page.scss'],
 })
 export class CarsPage implements OnInit {
-  cars$: Observable<Car[]>;
+  cars$: Observable<CarInfo[]>;
 
   constructor(
     private store: Store,
+    private modalController: ModalController,
   ) {}
 
   ngOnInit() {
@@ -34,5 +37,16 @@ export class CarsPage implements OnInit {
 
   makeCarRequest() {
     this.store.dispatch(ItemActions.loadAllCars());
+  }
+
+  async displayEditModal(car: CarInfo) {
+    const modal = await this.modalController.create({
+      component: CarBookModalPage,
+      cssClass: 'car-book-modal',
+      componentProps: {
+        car
+      },
+    });
+    return await modal.present();
   }
 }
