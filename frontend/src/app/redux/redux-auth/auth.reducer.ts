@@ -10,8 +10,8 @@ export interface State {
 }
 
 const selectAuth = createFeatureSelector<fromRoot.State, State>(context);
-export const selectCurrentUserId = createSelector(selectAuth, (state: State) => state.authResp.userId);
-export const selectToken = createSelector(selectAuth, (state: State) => state.authResp.token);
+export const selectCurrentUserId = createSelector(selectAuth, (state: State) => state.authResp?.userId);
+export const selectToken = createSelector(selectAuth, (state: State) => state.authResp?.token);
 
 const initialState: State = {
   authResp: null,

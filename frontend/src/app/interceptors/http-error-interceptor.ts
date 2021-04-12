@@ -5,7 +5,8 @@ import { Store } from '@ngrx/store';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-
+import * as CoreActions from '../redux/core.actions';
+import * as AuthActions from '../redux/redux-auth/auth.actions';
 
 
 @Injectable()
@@ -23,11 +24,10 @@ export class HttpErrorInterceptor implements HttpInterceptor {
       catchError(error => {
         if (error instanceof HttpErrorResponse) {
           console.log('Error intercepted');
-          // TODO: test this.router.url with baseurl!
           if (error.status === 401 && this.router.url !== environment.loginUrl ) {
-            console.log(this.router.url);
-            // this.store.dispatch(AuthActions.clearUser());
-            // this.store.dispatch(CoreActions.redirectLogin());
+            // console.log(this.router.url);
+            this.store.dispatch(AuthActions.clearAuthResponse());
+            this.store.dispatch(CoreActions.redirectLogin());
           } else {
             console.log(error);
           }

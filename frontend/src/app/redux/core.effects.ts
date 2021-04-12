@@ -14,8 +14,19 @@ export class CoreEffects {
     this.actions$.pipe(
       ofType(CoreActions.redirectCars),
       map(() => {
-        console.log('redirect');
+        console.log(`redirect to /${AppSubRoutes.cars}`);
         void this.router.navigateByUrl(`/${AppSubRoutes.cars}`);
+      })
+    ),
+  { dispatch: false }
+  );
+
+  redirectLogin$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CoreActions.redirectLogin),
+      map(() => {
+        console.log(`redirect to /${AppSubRoutes.login}`);
+        void this.router.navigateByUrl(`/${AppSubRoutes.login}`);
       })
     ),
   { dispatch: false }
