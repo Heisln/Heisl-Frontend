@@ -4,17 +4,17 @@ import { Store } from '@ngrx/store';
 import { CarService } from 'openapi';
 import { EMPTY } from 'rxjs';
 import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
-import * as ItemActions from './cars.actions';
-import * as fromItems from './cars.reducer';
+import * as CarActions from './cars.actions';
+import * as fromCars from './cars.reducer';
 
 @Injectable()
 export class CarEffects {
   loadAllCars$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ItemActions.loadAllCars),
-      withLatestFrom(this.store.select(fromItems.selectQuery)),
+      ofType(CarActions.loadAllCars),
+      withLatestFrom(this.store.select(fromCars.selectQuery)),
       switchMap(([_type, query]) => this.carService.apiV1CarGet(query).pipe(
-        map(cars => ItemActions.setCars({ cars })),
+        map(cars => CarActions.setCars({ cars })),
         catchError(() => EMPTY)
       ))
     )

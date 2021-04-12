@@ -26,7 +26,6 @@ export class AppConfigService {
     };
     // Token subscription
     this.store.select(fromAuth.selectToken).subscribe(token => {
-      console.log('tokeDidSet', token);
       this.currentToken = token;
       this.openAPIConfig.credentials = {
         Bearer: ('Bearer ' + token) ?? undefined
