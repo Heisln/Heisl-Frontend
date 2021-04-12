@@ -9,7 +9,7 @@ describe('CarBookModalPage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CarBookModalPage ],
+      declarations: [CarBookModalPage],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
