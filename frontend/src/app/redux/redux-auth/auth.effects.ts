@@ -8,6 +8,21 @@ import * as CoreActions from '../core.actions';
 
 @Injectable()
 export class AuthEffects {
+
+  register$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.register),
+      switchMap(({ user }) => this.userSerivce.apiV1UserRegistrationPost(user).pipe(
+        switchMap(authResp => [
+          AuthActions.setAuthResponse({ authResp }),
+          CoreActions.showToast({ toastText: `Successfully created user ${user.email}` }),
+          CoreActions.redirectCars(),
+        ]),
+        catchError(() => EMPTY))
+      )
+    )
+  );
+
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.login),

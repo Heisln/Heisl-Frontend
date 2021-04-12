@@ -33,6 +33,10 @@ const routes: Routes = [
     path: AppSubRoutes.googleMaps,
     loadChildren: () => import('./pages/google-map/google-map.module').then( m => m.GoogleMapPageModule)
   },
+  {
+    path: AppSubRoutes.register,
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+  },
 ];
 
 @NgModule({

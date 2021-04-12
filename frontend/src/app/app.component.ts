@@ -36,6 +36,11 @@ export class AppComponent implements OnInit {
       icon: 'log-in',
     },
     {
+      title: 'Register',
+      url: '/' + AppSubRoutes.register,
+      icon: 'log-in',
+    },
+    {
       title: 'Google Maps',
       url: '/' + AppSubRoutes.googleMaps,
       icon: 'map',
