@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Register page</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="content-box">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Register</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <div id="container">
+      <form [formGroup]="registerFormGroup" (ngSubmit)="onRegisterSubmit()">
+        
+        <app-form-text labelIn="Email" [didSubmitIn]="didSubmitOnce" [formControlIn]="registerFormGroup.controls.email"></app-form-text>
+
+        <ion-item>
+          <ion-label class="ion-text-wrap form-text"><h2>Password</h2></ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        
+        <app-form-text labelIn="Firstname" [didSubmitIn]="didSubmitOnce" [formControlIn]="registerFormGroup.controls.firstname"></app-form-text>
+        <app-form-text labelIn="Lastname" [didSubmitIn]="didSubmitOnce" [formControlIn]="registerFormGroup.controls.lastname"></app-form-text>
+        <app-form-date labelIn="Birthday" [didSubmitIn]="didSubmitOnce" [formControlIn]="registerFormGroup.controls.birthday"></app-form-date>
+
+        <br>
+        <ion-button type="submit" color="primary">Register</ion-button>
+      </form>
+    </div>
+  </div>
+</ion-content>
