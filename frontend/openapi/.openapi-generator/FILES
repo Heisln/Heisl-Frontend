@@ -2,6 +2,7 @@
 README.md
 api.module.ts
 api/api.ts
+api/booking.service.ts
 api/car.service.ts
 api/user.service.ts
 configuration.ts
@@ -13,8 +14,6 @@ model/authentication-response.ts
 model/booking.ts
 model/car-info.ts
 model/car.ts
-model/error-object.ts
 model/models.ts
 model/user.ts
-model/version-object.ts
 variables.ts

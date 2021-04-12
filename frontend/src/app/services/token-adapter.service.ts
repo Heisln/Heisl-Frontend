@@ -22,13 +22,14 @@ export class AppConfigService {
     // Openapi setup
     this.openAPIConfig.withCredentials = true;
     this.openAPIConfig.credentials = {
-      api_key: undefined
+      Bearer: undefined
     };
     // Token subscription
     this.store.select(fromAuth.selectToken).subscribe(token => {
+      console.log('tokeDidSet', token);
       this.currentToken = token;
       this.openAPIConfig.credentials = {
-        api_key: ('Bearer ' + token) ?? undefined
+        Bearer: ('Bearer ' + token) ?? undefined
       };
     });
   }

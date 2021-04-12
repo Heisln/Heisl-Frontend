@@ -1,34 +1,28 @@
 import { Action, ActionReducer, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
+import { AuthenticationResponse } from 'openapi';
 import * as fromRoot from '../core.reducer';
 import * as AuthActions from './auth.actions';
 
 export const context = 'auth';
 
 export interface State {
-  tokenInfo: TokenInfo | null; // Do not replace with context string, this is a nested step
+  authResp: AuthenticationResponse | null;
 }
 
 export const selectAuth = createFeatureSelector<fromRoot.State, State>(context);
-export const selectUser = createSelector(selectAuth, (state: State) => state.tokenInfo);
-export const selectToken = createSelector(selectAuth, (state: State) => state.tokenInfo?.token);
+export const selectUser = createSelector(selectAuth, (state: State) => state.authResp);
+export const selectToken = createSelector(selectAuth, (state: State) => state.authResp.token);
 
 const initialState: State = {
-  tokenInfo: null,
+  authResp: null,
 };
 
 const _loginReducer: ActionReducer<State, Action> = createReducer(
   initialState,
-  on(AuthActions.setUser, (state, { tokenInfo }) => ({ ...state, tokenInfo })),
-  on(AuthActions.clearUser, (state) => ({ ...state, ...initialState }))
+  on(AuthActions.setAuthResponse, (state, { authResp }) => ({ ...state, authResp })),
+  on(AuthActions.clearAuthResponse, (state) => ({ ...state, ...initialState }))
 );
 
 export function reducer(state: State, action: Action): State {
   return _loginReducer(state, action);
-}
-
-export interface TokenInfo {
-  userId: string;
-  token: string;
-  email: string;
-  role: string;
 }

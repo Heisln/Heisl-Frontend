@@ -2,6 +2,7 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
+import { BookingService } from './api/booking.service';
 import { CarService } from './api/car.service';
 import { UserService } from './api/user.service';
 

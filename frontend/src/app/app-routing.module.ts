@@ -12,12 +12,12 @@ export const routingConfiguration: ExtraOptions = {
 const routes: Routes = [
   {
     path: '',
-    redirectTo: AppSubRoutes.cars,
+    redirectTo: AppSubRoutes.login,
     pathMatch: 'full',
   },
   {
     path: AppSubRoutes.cars,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./pages/items/cars.module').then((m) => m.CarPageModule),
   },
   {
@@ -26,7 +26,7 @@ const routes: Routes = [
   },
   {
     path: AppSubRoutes.bookings,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./pages/bookings/bookings.module').then( m => m.BookingsPageModule)
   },
   {

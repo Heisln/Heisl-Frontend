@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/unbound-method */
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { AuthenticationRequest } from 'openapi';
+import * as AuthActions from '../../redux/redux-auth/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -9,32 +12,47 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  public loginForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
-  });
+
+  didSubmitOnce = false;
+  loginForm: FormGroup;
 
   constructor(
-    private router: Router,
-    private readonly store: Store
+    private readonly store: Store,
+    public formBuilder: FormBuilder
   ) {}
 
-  ngOnInit(): void {
-    // this.store
-    //   .select(selectToken)
-    //   .pipe(
-    //     map((token) => {
-    //       if (token != null) {
-    //         void this.router.navigate(['/']);
-    //       }
-    //       return new UserVM(token);
-    //     })
-    //   )
-    //   .subscribe();
+  ngOnInit() {
+    this.createForm();
   }
 
+  createForm() {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+    });
+  }
 
-  onLoginSubmit(): void {
-    // this.store.dispatch(AuthActions.login(this.loginForm.value));
+  onLoginSubmit() {
+    this.didSubmitOnce = true;
+    if (!this.loginForm.valid) {
+      console.log('Please provide all the required values!');
+      return;
+    }
+    const authReq = {
+      email: this.loginForm.value.email as string,
+      password: this.loginForm.value.password as string
+    } as AuthenticationRequest;
+    this.dispatchLoginAction(authReq);
+  }
+
+  autoLogin() {
+    const authReq = { email: 'mail@mail.test', password: 'pwd' } as AuthenticationRequest;
+    this.dispatchLoginAction(authReq);
+  }
+
+  dispatchLoginAction(authReq: AuthenticationRequest) {
+    console.log('dispatch login action');
+    this.store.dispatch(AuthActions.login({ authReq }));
+    this.didSubmitOnce = false;
   }
 }
