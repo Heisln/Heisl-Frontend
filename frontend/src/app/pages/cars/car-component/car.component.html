@@ -7,6 +7,6 @@
 
   <ion-card-content> 
     Horsepower: {{ car.horsepower }} <br>
-    Price per Day: {{ car.priceperday }}
+    Price per Day: {{ car.priceperday | number: '0.0-2'}}
   </ion-card-content>
 </ion-card>
