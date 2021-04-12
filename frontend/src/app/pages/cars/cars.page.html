@@ -1,8 +1,5 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
     <ion-title>Cars</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -26,7 +23,7 @@
     <div class="myGrid">
       <ion-item  *ngFor="let car of cars$ | async" lines="none">
         <ion-label>
-          <app-car-component [car]="car"></app-car-component>
+          <app-car-component [car]="car" (click)="displayEditModal(car)"></app-car-component>
         </ion-label>
       </ion-item>
     </div>
