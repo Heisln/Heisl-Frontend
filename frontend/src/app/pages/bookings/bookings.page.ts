@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Booking } from 'openapi';
+import { Observable } from 'rxjs';
+import * as fromBookings from './redux/bookings.reducer';
+import * as BookingActions from './redux/bookings.actions';
 
 @Component({
   selector: 'app-bookings',
@@ -7,9 +12,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookingsPage implements OnInit {
 
-  constructor() { }
+  bookings$: Observable<Booking[]>;
+
+  constructor(
+    private store: Store,
+  ) { }
 
   ngOnInit() {
+    this.bookings$ = this.store.select(fromBookings.selectAllBookings, { sortAttr: 'name' });
+    this.store.dispatch(BookingActions.loadMyBookings());
   }
 
 }

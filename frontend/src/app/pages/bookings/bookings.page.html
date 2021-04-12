@@ -1,9 +1,21 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>bookings</ion-title>
+    <ion-title>Bookings</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div class="content-box">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Bookings</ion-title>
+      </ion-toolbar>
+    </ion-header>
 
+    <ion-list lines="none">
+      <ion-item  *ngFor="let booking of bookings$ | async">
+        <ion-label> {{ booking.car.brand }} {{ booking.car.name }} </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
