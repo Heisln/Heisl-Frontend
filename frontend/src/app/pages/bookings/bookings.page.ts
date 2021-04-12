@@ -23,4 +23,13 @@ export class BookingsPage implements OnInit {
     this.store.dispatch(BookingActions.loadMyBookings());
   }
 
+  cutTime(datetime: string): string {
+    return cutTimeFromDate(datetime);
+  }
+
+  returnBooking(bookingId: string) {
+    this.store.dispatch(BookingActions.returnCar({ bookingId }));
+  }
 }
+
+export const cutTimeFromDate = (date: string): string => (date) ? date.split('T')[0] : '';
