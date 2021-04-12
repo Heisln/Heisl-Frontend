@@ -20,6 +20,7 @@ import { Observable }                                        from 'rxjs';
 import { AuthenticationRequest } from '../model/models';
 import { AuthenticationResponse } from '../model/models';
 import { Booking } from '../model/models';
+import { Currency } from '../model/models';
 import { User } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -218,10 +219,10 @@ export class UserService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiV1UserUserIdBookingsBookingIdGet(userId: string, bookingId: string, currency?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<Booking>;
-    public apiV1UserUserIdBookingsBookingIdGet(userId: string, bookingId: string, currency?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpResponse<Booking>>;
-    public apiV1UserUserIdBookingsBookingIdGet(userId: string, bookingId: string, currency?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpEvent<Booking>>;
-    public apiV1UserUserIdBookingsBookingIdGet(userId: string, bookingId: string, currency?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<any> {
+    public apiV1UserUserIdBookingsBookingIdGet(userId: string, bookingId: string, currency?: Currency, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<Booking>;
+    public apiV1UserUserIdBookingsBookingIdGet(userId: string, bookingId: string, currency?: Currency, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpResponse<Booking>>;
+    public apiV1UserUserIdBookingsBookingIdGet(userId: string, bookingId: string, currency?: Currency, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpEvent<Booking>>;
+    public apiV1UserUserIdBookingsBookingIdGet(userId: string, bookingId: string, currency?: Currency, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<any> {
         if (userId === null || userId === undefined) {
             throw new Error('Required parameter userId was null or undefined when calling apiV1UserUserIdBookingsBookingIdGet.');
         }
@@ -282,10 +283,10 @@ export class UserService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiV1UserUserIdBookingsGet(userId: string, currency?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<Array<Booking>>;
-    public apiV1UserUserIdBookingsGet(userId: string, currency?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpResponse<Array<Booking>>>;
-    public apiV1UserUserIdBookingsGet(userId: string, currency?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpEvent<Array<Booking>>>;
-    public apiV1UserUserIdBookingsGet(userId: string, currency?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<any> {
+    public apiV1UserUserIdBookingsGet(userId: string, currency?: Currency, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<Array<Booking>>;
+    public apiV1UserUserIdBookingsGet(userId: string, currency?: Currency, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpResponse<Array<Booking>>>;
+    public apiV1UserUserIdBookingsGet(userId: string, currency?: Currency, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpEvent<Array<Booking>>>;
+    public apiV1UserUserIdBookingsGet(userId: string, currency?: Currency, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<any> {
         if (userId === null || userId === undefined) {
             throw new Error('Required parameter userId was null or undefined when calling apiV1UserUserIdBookingsGet.');
         }

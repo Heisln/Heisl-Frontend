@@ -24,11 +24,16 @@
         </ion-list>
 
         <ion-list>
-          <ion-item lines="none" detail="false">
-            <ion-label>User ID: {{ (user$ | async) }}</ion-label>
+          <ion-item lines="none" detail="false" *ngIf="!isLoggedIn()">
+            <ion-label>User ID: {{ (userId$ | async) }}</ion-label>
           </ion-item>
-          <ion-item lines="none" detail="false" *ngIf="(user$ | async) null">
+          <ion-item lines="none" detail="false" *ngIf="!isLoggedIn()">
             <ion-button (click)="logout()" color="danger">Log out</ion-button>
+          </ion-item>
+          <ion-item *ngIf="!isLoggedIn()">
+            <ion-select [value]="defaultCurrency" interface="popover" slot="end" (ionChange)="currencyChanged($event)">
+              <ion-select-option *ngFor="let val of values(currencyEnum)" value="{{ val }}">{{ val }}</ion-select-option>
+            </ion-select>
           </ion-item>
         </ion-list>
       </ion-content>

@@ -14,8 +14,8 @@ export class CarEffects {
   loadAllCars$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CarActions.loadAllCars),
-      withLatestFrom(this.store.select(fromCars.selectQuery)),
-      switchMap(([_type, query]) => this.carService.apiV1CarGet(query).pipe(
+      withLatestFrom(this.store.select(fromCars.selectQuery), this.store.select(fromCars.selectCurrency)),
+      switchMap(([_type, query, currency]) => this.carService.apiV1CarGet(query, currency).pipe(
         map(cars => CarActions.setCars({ cars })),
         catchError(() => EMPTY)
       ))
@@ -31,7 +31,7 @@ export class CarEffects {
         booking.userId = userId;
         return booking;
       }),
-      switchMap(booking => this.carService.apiV1CarBookPost(booking).pipe(
+      switchMap(booking => this.carService.apiV1CarBookPost(null, booking).pipe(
         map(bookingResponse => CoreAction.showToast({ toastText: `Booked Car ${bookingResponse.car.brand} ${bookingResponse.car.name}` })),
         catchError(() => EMPTY)
       ))

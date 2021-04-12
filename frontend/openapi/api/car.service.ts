@@ -20,6 +20,7 @@ import { Observable }                                        from 'rxjs';
 import { Booking } from '../model/models';
 import { Car } from '../model/models';
 import { CarInfo } from '../model/models';
+import { Currency } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -87,16 +88,20 @@ export class CarService {
     }
 
     /**
+     * @param authorization 
      * @param booking 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiV1CarBookPost(booking?: Booking, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<Booking>;
-    public apiV1CarBookPost(booking?: Booking, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpResponse<Booking>>;
-    public apiV1CarBookPost(booking?: Booking, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpEvent<Booking>>;
-    public apiV1CarBookPost(booking?: Booking, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<any> {
+    public apiV1CarBookPost(authorization?: string, booking?: Booking, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<Booking>;
+    public apiV1CarBookPost(authorization?: string, booking?: Booking, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpResponse<Booking>>;
+    public apiV1CarBookPost(authorization?: string, booking?: Booking, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpEvent<Booking>>;
+    public apiV1CarBookPost(authorization?: string, booking?: Booking, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<any> {
 
         let headers = this.defaultHeaders;
+        if (authorization !== undefined && authorization !== null) {
+            headers = headers.set('authorization', String(authorization));
+        }
 
         let credential: string | undefined;
         // authentication (Bearer) required
@@ -154,10 +159,10 @@ export class CarService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiV1CarGet(query?: string, currency?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<Array<CarInfo>>;
-    public apiV1CarGet(query?: string, currency?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpResponse<Array<CarInfo>>>;
-    public apiV1CarGet(query?: string, currency?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpEvent<Array<CarInfo>>>;
-    public apiV1CarGet(query?: string, currency?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<any> {
+    public apiV1CarGet(query?: string, currency?: Currency, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<Array<CarInfo>>;
+    public apiV1CarGet(query?: string, currency?: Currency, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpResponse<Array<CarInfo>>>;
+    public apiV1CarGet(query?: string, currency?: Currency, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpEvent<Array<CarInfo>>>;
+    public apiV1CarGet(query?: string, currency?: Currency, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<any> {
 
         let queryParameters = new HttpParams({encoder: this.encoder});
         if (query !== undefined && query !== null) {
@@ -216,10 +221,10 @@ export class CarService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiV1CarIdGet(id: string, currency?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<Car>;
-    public apiV1CarIdGet(id: string, currency?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpResponse<Car>>;
-    public apiV1CarIdGet(id: string, currency?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpEvent<Car>>;
-    public apiV1CarIdGet(id: string, currency?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<any> {
+    public apiV1CarIdGet(id: string, currency?: Currency, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<Car>;
+    public apiV1CarIdGet(id: string, currency?: Currency, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpResponse<Car>>;
+    public apiV1CarIdGet(id: string, currency?: Currency, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<HttpEvent<Car>>;
+    public apiV1CarIdGet(id: string, currency?: Currency, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain' | 'application/json' | 'text/json'}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling apiV1CarIdGet.');
         }
@@ -273,13 +278,14 @@ export class CarService {
 
     /**
      * @param bookingId 
+     * @param authorization 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiV1CarReturnPost(bookingId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<any>;
-    public apiV1CarReturnPost(bookingId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpResponse<any>>;
-    public apiV1CarReturnPost(bookingId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpEvent<any>>;
-    public apiV1CarReturnPost(bookingId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined}): Observable<any> {
+    public apiV1CarReturnPost(bookingId?: string, authorization?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<any>;
+    public apiV1CarReturnPost(bookingId?: string, authorization?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpResponse<any>>;
+    public apiV1CarReturnPost(bookingId?: string, authorization?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpEvent<any>>;
+    public apiV1CarReturnPost(bookingId?: string, authorization?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined}): Observable<any> {
 
         let queryParameters = new HttpParams({encoder: this.encoder});
         if (bookingId !== undefined && bookingId !== null) {
@@ -288,6 +294,9 @@ export class CarService {
         }
 
         let headers = this.defaultHeaders;
+        if (authorization !== undefined && authorization !== null) {
+            headers = headers.set('authorization', String(authorization));
+        }
 
         let credential: string | undefined;
         // authentication (Bearer) required

@@ -1,14 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Platform } from '@ionic/angular';
 import { Store } from '@ngrx/store';
+import { Currency } from 'openapi';
 import { Observable } from 'rxjs';
 import { environment } from './../environments/environment';
 import { AppSubRoutes } from './app.subroutes';
 import * as AuthActions from './redux/redux-auth/auth.actions';
 import * as fromAuth from './redux/redux-auth/auth.reducer';
+import * as CarActions from './pages/cars/redux/cars.actions';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -16,9 +20,14 @@ import * as fromAuth from './redux/redux-auth/auth.reducer';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public selectedIndex = 1;
-  public version = environment.version;
-  public user$: Observable<string>;
+  selectedIndex = 1;
+  version = environment.version;
+  userId$: Observable<string>;
+  values = Object.values;
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  currencyEnum = Currency;
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+  defaultCurrency = Currency.Usd;
   public appPages = [
     {
       title: 'Cars',
@@ -73,7 +82,7 @@ export class AppComponent implements OnInit {
       }
     });
 
-    this.user$ = this.store.select(fromAuth.selectCurrentUserId);
+    this.userId$ = this.store.select(fromAuth.selectCurrentUserId);
   }
 
   navigateExternal(url: string): boolean {
@@ -83,5 +92,18 @@ export class AppComponent implements OnInit {
 
   logout(): void {
     this.store.dispatch(AuthActions.logout());
+  }
+
+  currencyChanged(event: any) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    const currency = event.detail.value as Currency;
+    this.store.dispatch(CarActions.setCurrency({ currency }));
+    this.store.dispatch(CarActions.loadAllCars());
+  }
+
+  isLoggedIn(): boolean {
+    let isloggedin = false;
+    this.userId$.pipe(take(1)).subscribe(id => isloggedin = id == null);
+    return isloggedin;
   }
 }
