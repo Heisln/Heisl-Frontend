@@ -1,0 +1,705 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "Heisln Gateway",
+      "version": "v1"
+    },
+    "paths": {
+        "/api/v1/User/login": {
+          "post": {
+            "tags": [
+              "User"
+            ],
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AuthenticationRequest"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AuthenticationRequest"
+                  }
+                },
+                "application/*+json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AuthenticationRequest"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "Success",
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "$ref": "#/components/schemas/AuthenticationResponse"
+                    }
+                  },
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/AuthenticationResponse"
+                    }
+                  },
+                  "text/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/AuthenticationResponse"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "/api/v1/User/registration": {
+          "post": {
+            "tags": [
+              "User"
+            ],
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                },
+                "application/*+json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "Success",
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "$ref": "#/components/schemas/AuthenticationResponse"
+                    }
+                  },
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/AuthenticationResponse"
+                    }
+                  },
+                  "text/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/AuthenticationResponse"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "/api/v1/User/edit": {
+          "post": {
+            "tags": [
+              "User"
+            ],
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/EditUser"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/EditUser"
+                  }
+                },
+                "application/*+json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/EditUser"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "Success"
+              }
+            }
+          }
+        },
+      "/api/v1/Booking": {
+        "get": {
+          "tags": [
+            "Booking"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            {
+              "name": "currency",
+              "in": "query",
+              "schema": {
+                "$ref": "#/components/schemas/Currency"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Booking"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Booking"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Booking"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/Booking/{userId}/bookings/{bookingId}": {
+        "get": {
+          "tags": [
+            "Booking"
+          ],
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            {
+              "name": "bookingId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            {
+              "name": "currency",
+              "in": "query",
+              "schema": {
+                "$ref": "#/components/schemas/Currency"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Booking"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Booking"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Booking"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/Booking/{userId}/bookings": {
+        "get": {
+          "tags": [
+            "Booking"
+          ],
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            {
+              "name": "currency",
+              "in": "query",
+              "schema": {
+                "$ref": "#/components/schemas/Currency"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Booking"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Booking"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Booking"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/Car/book": {
+        "post": {
+          "tags": [
+            "Car"
+          ],
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "schema": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Booking"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Booking"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Booking"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/Car/return": {
+        "post": {
+          "tags": [
+            "Car"
+          ],
+          "parameters": [
+            {
+              "name": "bookingId",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            {
+              "name": "authorization",
+              "in": "header",
+              "schema": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/Car": {
+        "get": {
+          "tags": [
+            "Car"
+          ],
+          "parameters": [
+            {
+              "name": "query",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "nullable": true
+              }
+            },
+            {
+              "name": "currency",
+              "in": "query",
+              "schema": {
+                "$ref": "#/components/schemas/Currency"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CarInfo"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CarInfo"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CarInfo"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/Car/{id}": {
+        "get": {
+          "tags": [
+            "Car"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            {
+              "name": "currency",
+              "in": "query",
+              "schema": {
+                "$ref": "#/components/schemas/Currency"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Car"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Car"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Car"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Currency": {
+          "enum": [
+            "USD",
+            "JPY",
+            "BGN",
+            "CZK",
+            "DKK",
+            "GBP",
+            "HUF",
+            "PLN",
+            "RON",
+            "SEK",
+            "CHF",
+            "ISK",
+            "NOK",
+            "HRK",
+            "RUB",
+            "TRY",
+            "AUD",
+            "BRL",
+            "CAD",
+            "CNY",
+            "HKD",
+            "CIDR",
+            "ILS",
+            "INR",
+            "KRW",
+            "MXN",
+            "MYR",
+            "NZD",
+            "PHP",
+            "SGD",
+            "THB",
+            "ZAR"
+          ],
+          "type": "string"
+        },
+        "CarInfo": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "brand": {
+              "type": "string",
+              "nullable": true
+            },
+            "name": {
+              "type": "string",
+              "nullable": true
+            },
+            "priceperday": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "Booking": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "carId": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "car": {
+              "$ref": "#/components/schemas/CarInfo"
+            },
+            "userId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "startDate": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "endDate": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "additionalProperties": false
+        },
+        "Car": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "brand": {
+              "type": "string",
+              "nullable": true
+            },
+            "name": {
+              "type": "string",
+              "nullable": true
+            },
+            "horsepower": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "consumption": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "priceperday": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "AuthenticationRequest": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "nullable": true
+            },
+            "password": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "AuthenticationResponse": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string",
+              "nullable": true
+            },
+            "userId": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "additionalProperties": false
+        },
+        "User": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "nullable": true
+            },
+            "password": {
+              "type": "string",
+              "nullable": true
+            },
+            "firstName": {
+              "type": "string",
+              "nullable": true
+            },
+            "lastName": {
+              "type": "string",
+              "nullable": true
+            },
+            "birthday": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "additionalProperties": false
+        },
+        "EditUser": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "email": {
+              "type": "string",
+              "nullable": true
+            },
+            "firstName": {
+              "type": "string",
+              "nullable": true
+            },
+            "lastName": {
+              "type": "string",
+              "nullable": true
+            },
+            "birthday": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "securitySchemes": {
+        "Bearer": {
+          "type": "apiKey",
+          "description": "Enter 'Bearer' [space] and then your valid token in the text input below.\r\n\r\nExample: \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\"",
+          "name": "Authorization",
+          "in": "header"
+        }
+      }
+    },
+    "security": [
+      {
+        "Bearer": [ ]
+      }
+    ]
+  }

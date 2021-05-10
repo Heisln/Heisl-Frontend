@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { CarService, UserService } from 'openapi';
+import { BookingService, CarService } from 'openapi';
 import { EMPTY } from 'rxjs';
 import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
 import * as BookingsActions from './bookings.actions';
@@ -14,7 +14,7 @@ export class BookingEffects {
     this.actions$.pipe(
       ofType(BookingsActions.loadMyBookings),
       withLatestFrom(this.store.select(fromAuth.selectCurrentUserId)),
-      switchMap(([_type, userId]) => this.userService.apiV1UserUserIdBookingsGet(userId).pipe(
+      switchMap(([_type, userId]) => this.bookingService.apiV1BookingUserIdBookingsGet(userId).pipe(
         map(bookings => BookingsActions.setMyBookings({ bookings })),
         catchError(() => EMPTY)
       ))
@@ -36,7 +36,7 @@ export class BookingEffects {
 
   constructor(
     private actions$: Actions,
-    private userService: UserService,
+    private bookingService: BookingService,
     private carService: CarService,
     private store: Store
   ) { }

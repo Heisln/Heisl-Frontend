@@ -15,6 +15,7 @@ model/booking.ts
 model/car-info.ts
 model/car.ts
 model/currency.ts
+model/edit-user.ts
 model/models.ts
 model/user.ts
 variables.ts

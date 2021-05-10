@@ -11,12 +11,11 @@
  */
 
 
-export interface Car { 
+export interface EditUser { 
     id?: string;
-    brand?: string | null;
-    name?: string | null;
-    horsepower?: number | null;
-    consumption?: number | null;
-    priceperday?: number | null;
+    email?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    birthday?: string;
 }
 

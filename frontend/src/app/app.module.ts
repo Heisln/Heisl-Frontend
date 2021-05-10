@@ -6,9 +6,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { Configuration } from 'openapi';
+import { BASE_PATH, Configuration } from 'openapi';
 import { ApiModule } from '../../openapi/api.module';
-import { BASE_PATH } from '../../openapi/variables';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,7 +36,7 @@ export function appInitializerFn(_appConfig: AppConfigService) {
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: BASE_PATH, useValue: environment.apiBasePath },
+    { provide: BASE_PATH, useValue: undefined },
     { provide: Configuration, useFactory: () => new Configuration(), multi: false },
     { provide: APP_INITIALIZER, useFactory: () => appInitializerFn, deps: [AppConfigService], multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
