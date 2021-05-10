@@ -14,7 +14,10 @@ export class CarEffects {
   loadAllCars$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CarActions.loadAllCars),
-      withLatestFrom(this.store.select(fromCars.selectQuery), this.store.select(fromCars.selectCurrency)),
+      withLatestFrom(
+        this.store.select(fromCars.selectQuery),
+        this.store.select(fromCars.selectCurrency)
+      ),
       switchMap(([_type, query, currency]) => this.carService.apiV1CarGet(query, currency).pipe(
         map(cars => CarActions.setCars({ cars })),
         catchError(() => EMPTY)
