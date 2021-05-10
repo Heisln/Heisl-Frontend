@@ -15,7 +15,7 @@ export const appReducers: ActionReducerMap<State> = {
 // log all actions
 export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
   return function(state, action) {
-    console.log('state ->', state, '\n action ->', action.type, action);
+    // console.log('state ->', state, '\n action ->', action.type, action);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return reducer(state, action);
   };
