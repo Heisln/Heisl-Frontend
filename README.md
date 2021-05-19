@@ -1,5 +1,6 @@
 ![test badge](https://github.com/Heisln/Heisln-Frontend/actions/workflows/main.yml/badge.svg)
 ![dockerhub](https://github.com/Heisln/Heisln-Frontend/actions/workflows/container.yml/badge.svg)
+[![Known Vulnerabilities](https://snyk.io/test/github/Heisln/Heisln-Frontend/badge.svg)](https://snyk.io/test/github/Heisln/Heisln-Frontend)
 # Heisl-Frontend
 
 ## Getting Started
